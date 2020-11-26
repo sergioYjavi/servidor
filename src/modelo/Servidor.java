@@ -7,30 +7,26 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import static java.util.concurrent.Executors.newCachedThreadPool;
 
-
 public class Servidor 
 {
-    //grupos acabados e iteraciones
-    private static int cont, contIteracion;
-    //tiempo total de cada grupo de taxi en todas las iteraciones. 
-     private long [] tiempoEnIteracion;
-    //Taxis conectados
     private static ArrayList<Taxi> list;
-    //tiempos de cada taxi
+    
     private static long[] tiempos;
-    //taxis que han acabado
+    
     private static int[] contador;
-    //tiempo simulacion
+    
+    private static int cont, contIteracion;
+    private long [] tiempoEnIteracion;
+    
     private long tiempoTotal;
+   
     private static int PORT;
-   //Nº taxis conectados
+    
     private static int MAX_TAXI;
-    //Nº taxis grupo
+    
     private static int MAX_TAXI_GRUPO;
     private static int ITERACIONES;
-    
-    //Constructor
-    public Servidor(int PORT, int MAX_TAXI, int MAX_TAXI_GRUPO
+        public Servidor(int PORT, int MAX_TAXI, int MAX_TAXI_GRUPO
             , int ITERACIONES)
     {
         this.PORT = PORT;
@@ -66,7 +62,6 @@ public class Servidor
         }
     }
     
-    //Inicia hilos
     public void iniciar(ArrayList<Taxi> list, ExecutorService pool)
     {
         for (int i = 0; i < list.size(); ++i) 
@@ -76,12 +71,9 @@ public class Servidor
     }
 
     
-    //Peticiones servidor
     private static ArrayList<Taxi> aceptacionConexion(ServerSocket 
             servidor)
     {
-        System.out.println("Conectando");
-
         int i = 0;
         ArrayList<Taxi> list = new ArrayList<Taxi>();
         try
@@ -96,13 +88,12 @@ public class Servidor
         }
         catch(Exception e)
         {
-            System.out.println("Excepcion al crear taxi: " + e);
+            System.out.println("Excepcion al crear trabajadores: " + e);
         }
             
         return list;
     }
 
-    //Coordenadas de taxis vecinos
  
     protected synchronized void enviarATodos(int indice) throws IOException 
     {
@@ -117,16 +108,12 @@ public class Servidor
             }
         }
     }
-
-    //Envía al taxi ubicado en 'indiceString' el mensaje msg.
     protected synchronized void enviar(String msg, String indiceString) throws IOException 
     {
         int indice = Integer.parseInt(indiceString);
         list.get(indice).getEscritura().writeUTF(msg);
         list.get(indice).getEscritura().flush();
     }
-    
-    //Guarda tiempo y posicIón del taxi
     protected synchronized void sumarTiempo(long num, int pos) throws Throwable
     {
         tiempos[pos] += num;
@@ -150,24 +137,11 @@ public class Servidor
         }
     }
     
-    /**
-     * Devuelve el tiempo total medio de la simulación.
-     * Tiempo total medio = Tiempo Total / ITERACIONES.
-     * 
-     * @return Tiempo total medio.
-     */
     public String getTiempoMedioTotal()
     {
         return "" + (tiempoTotal/ITERACIONES);
     }
     
-    /**
-     * Devuelve los tiempos medios de cada grupo de trabajadores. 
-     * Tiempo medio = Tiempo total / ITERACIONES
-     * 
-     * @return String con el texto relleno con los tiempos de cada grupo de 
-     * trabajadores.
-     */
     public String getTiemposMediosGrupos()
     {
         String ret = "";
@@ -180,13 +154,6 @@ public class Servidor
         return ret;
     }
 
-    /**
-     * Devuelve el tiempo total medio de todos los grupos.
-     * Tiempo total medio = (suma de todos los (Tiempo Total / ITERACIONES)) 
-     * / Número de grupos.
-     * 
-     * @return Tiempo total medio de todos los grupos.
-     */
     public String getTiempoMedioGrupos()
     {
         int suma = 0;

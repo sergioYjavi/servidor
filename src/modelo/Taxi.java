@@ -7,107 +7,84 @@ import java.net.Socket;
 
 public class Taxi 
 {
+    private String coordenada;
+    
+    private Socket socket;
+    
     private static int id_taxi_prox;
     private final int id_taxi;
+
     private  int id_grupo;
-    //Coordenada taxi
-    private String coordenada;
-    //Socket taxi
-    private Socket socket;
-    //Calculo taxi cercano
+    
     private DataInputStream lee;
-    /**
-     * Flujo datos taxi.
-     */
+    
     private DataOutputStream esc;
    
-    //Constructor
     public Taxi(Socket soc, int MAX_TAXI_GRUPO) throws IOException
     {
-        
         socket = soc;
         id_taxi = id_taxi_prox;
         id_grupo = id_taxi / MAX_TAXI_GRUPO;
         id_taxi_prox += 1;
         
         lee = new DataInputStream(socket.getInputStream());  
-	esc = new DataOutputStream(socket.getOutputStream());
-        
-        
+	esc = new DataOutputStream(socket.getOutputStream()); 
     }
-    
-    
-    //Flujo datos taxi
-    public DataInputStream getLectura()
-    {
-        return lee;
-    }
-    
-    
-    //Cierro socket
+
     public void setLiberarRecurso() throws IOException{
         socket.close();
         lee.close();
         esc.close();
     }
-    //Grupo del taxi
+
     public int getIdGrupo()
     {
         return id_grupo;
     }
     
-    
-    //Socket taxi
+    public DataInputStream getLectura()
+    {
+        return lee;
+    }
+
+    public void setLectura(DataInputStream br)
+    {
+        lee = br;
+    }
+
+    public int getIdTaxi()
+    {
+        return id_taxi;
+    }
     public Socket getSocket()
     {
         return socket;
     }
 
-    //insertar datos taxi
-    public void setLectura(DataInputStream milectura)
+    public void setSocket(Socket so)
     {
-        lee = milectura;
+        socket = so;
     }
 
-    //Idtaxi
-    public int getIdTaxi()
+    public void setEscritura(DataOutputStream pw)
     {
-        return id_taxi;
+        esc = pw;
     }
-    
-    //Coordenada
-    public void setCoordenada(String cor)
+
+    public DataOutputStream getEscritura()
     {
-        coordenada = cor;
+        return esc;
     }
-    
-    //devuelve coordenada
+    public void setCoordenada(String c)
+    {
+        coordenada = c;
+    }
+
     public String getCoordenada()
     {
         return coordenada;
     }
 
-    
-    
-    // inserta socket taxi
-    public void setSocket(Socket misocket)
-    {
-        socket = misocket;
-    }
-
-    //flujo de insercción del taxi
-    public void setEscritura(DataOutputStream miescr)
-    {
-        esc = miescr;
-    }
-
-    //salida flujo de datos
-    public DataOutputStream getEscritura()
-    {
-        return esc;
-    }
-    
-    //devuelve string datos taxi
     @Override
     public String toString()
     {

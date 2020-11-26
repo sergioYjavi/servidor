@@ -1,13 +1,14 @@
 package controlador;
 
+
 import modelo.Servidor;
 import vista.vista;
 import java.awt.event.*;
-import javax.swing.JOptionPane;
 
 public class Controlador 
 {
     private Servidor servidor;
+    
     private vista vista;
     public Controlador(vista vista)
     {
@@ -35,21 +36,16 @@ public class Controlador
             switch (command) 
             {
                 case "inicio":
-
                     servidor = new Servidor(
-                    vista.getPuerto(),
-                    vista.getMax_Taxi(), 
-                    vista.getMax_Taxi_Grupo(),
-                    vista.getIteraciones());
-                    JOptionPane.showMessageDialog(null,"Comenzamos");
-                    
-
+                            vista.getPuerto(),
+                            vista.getMax_Taxi(), 
+                            vista.getMax_Taxi_Grupo(),
+                            vista.getIteraciones());
                     break;
                 case "salir":
                     System.exit(0);
                 break;
                 case "act":
-                    
                     vista.setTiempoMedio(servidor.getTiempoMedioTotal());
                     vista.setTiemposMediosGrupos(servidor.getTiemposMediosGrupos());
                     vista.setTiempoGruposMedio(servidor.getTiempoMedioGrupos());

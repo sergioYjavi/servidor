@@ -16,9 +16,9 @@ class norte extends JPanel
         jlpuerto = new JLabel("Puerto: ");
         
         jtftaxi = new JTextField(5);
-        jtftaxi.setText("100");
+        jtftaxi.setText("500");
         jtftaxigrupo = new JTextField(5);
-        jtftaxigrupo.setText("10");
+        jtftaxigrupo.setText("50");
         jtfiteracions = new JTextField(5);
         jtfiteracions.setText("10");
         jtfpuerto = new JTextField(5);
