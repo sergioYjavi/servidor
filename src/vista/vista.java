@@ -13,6 +13,7 @@ public class vista extends JFrame
     public vista()
     {
         this.setLayout(new BorderLayout());
+        this.setTitle("Servidor de la Aplicación.");
         np = new norte();
         sp = new sur();
         cp = new centro();
@@ -21,7 +22,8 @@ public class vista extends JFrame
         this.add(sp,BorderLayout.SOUTH);
         this.add(cp,BorderLayout.CENTER);
         
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        this.setExtendedState(JFrame.NORMAL);
+        this.setSize(700, 600);
 
         this.setVisible(true);
     }
