@@ -10,21 +10,22 @@ public class vista extends JFrame
     private norte np;
     private sur sp;
     private centro cp;
+    
     public vista()
     {
         this.setLayout(new BorderLayout());
-        this.setTitle("Servidor de la Aplicación.");
+        this.setSize(800, 400);
+        
         np = new norte();
-        sp = new sur();
         cp = new centro();
+        sp = new sur();
+        
         
         this.add(np,BorderLayout.NORTH);
-        this.add(sp,BorderLayout.SOUTH);
         this.add(cp,BorderLayout.CENTER);
+        this.add(sp,BorderLayout.SOUTH);
         
-        this.setExtendedState(JFrame.NORMAL);
-        this.setSize(700, 600);
-
+        
         this.setVisible(true);
     }
     
@@ -69,5 +70,14 @@ public class vista extends JFrame
     {
         sp.setActionListener(actionListener);
     }
+    
+    
+    public static void main(String[] args) {
+        
+        vista view = new vista();
+        
+        view.setVisible(true);
+    }
+    
     
 }
