@@ -89,7 +89,7 @@ public class Servidor
         }
         catch(Exception e)
         {
-            System.out.println("Excepcion al crear trabajadores: " + e);
+            System.out.println("Excepcion al crear taxi: " + e);
         }
             
         return list;
