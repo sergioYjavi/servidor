@@ -50,6 +50,7 @@ public class Servidor
         try
         {
             list = new ArrayList<Taxi>();
+            list.clear();
             ExecutorService pool = newCachedThreadPool();
             ServerSocket servidor = new ServerSocket(PORT);
    

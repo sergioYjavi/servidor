@@ -36,6 +36,7 @@ public class Controlador
             switch (command) 
             {
                 case "inicio":
+                    vista.Limpiar();
                     servidor = new Servidor(
                             vista.getPuerto(),
                             vista.getMax_Taxi(), 
@@ -44,16 +45,16 @@ public class Controlador
                     break;
                 case "salir":
                     System.exit(0);
-                break;
+                    break;
                 case "act":
                     vista.setTiempoMedio(servidor.getTiempoMedioTotal());
                     vista.setTiemposMediosGrupos(servidor.getTiemposMediosGrupos());
                     vista.setTiempoGruposMedio(servidor.getTiempoMedioGrupos());
-                break;
+                    break;
                 default:
                     System.out.println("Comando ’" + 
                         command + "’ no reconocido.");
-                break;
+                    break;
             }
         }
     }

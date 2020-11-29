@@ -51,7 +51,18 @@ class centro extends JPanel
                 
         this.setVisible(true);
     }
-
+    
+    /**
+     * Limpia todos los campos antes de efectuar una nueva prueba
+     * 
+     */
+    public void limpiar()
+    {
+        textar.setText("");
+        jtftiempomedio.setText("");
+        jtfmediagrupos.setText("");
+    }
+    
     /**
      * Asignar el tiempo medio del total 
      * @param tiempoMedioTotal tiempo 

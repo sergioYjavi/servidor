@@ -50,6 +50,13 @@ public class vista extends JFrame
         cp.setTiempoGruposMedio(tiempoMedioGrupos);
     }
     
+    /**
+     * Limpia los campos de texto de la ventana
+     */
+    public void Limpiar()
+    {
+        cp.limpiar();
+    }
     
     public int getMax_Taxi()
     {
