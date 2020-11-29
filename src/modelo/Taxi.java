@@ -4,6 +4,9 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Taxi 
 {
@@ -22,13 +25,15 @@ public class Taxi
    
     public Taxi(Socket soc, int MAX_TAXI_GRUPO) throws IOException
     {
+        
         socket = soc;
         id_taxi = id_taxi_prox;
         id_grupo = id_taxi / MAX_TAXI_GRUPO;
         id_taxi_prox += 1;
         
         lee = new DataInputStream(socket.getInputStream());  
-	esc = new DataOutputStream(socket.getOutputStream()); 
+	esc = new DataOutputStream(socket.getOutputStream());
+        
     }
 
     public void setLiberarRecurso() throws IOException{
@@ -88,8 +93,15 @@ public class Taxi
     @Override
     public String toString()
     {
-        String s = "Taxi [id " + id_taxi + ", coordenada "
+        String s = "Taxib [id " + id_taxi + ", coordenada "
                 + coordenada + ", socket: " + socket + "]";
+        try {
+            socket.setSoTimeout(10000);
+        } catch (SocketException ex) {
+            Logger.getLogger(Taxi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         return s;
+        
     }
 }

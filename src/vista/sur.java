@@ -5,7 +5,7 @@ import javax.swing.*;
 
 class sur extends JPanel 
 {
-    private JButton inicio, salir, act;
+    private JButton inicio, salir, act,grafico;
     
     public sur()
     {
@@ -15,9 +15,12 @@ class sur extends JPanel
         salir.setActionCommand("salir");
         act = new JButton("Actualizar");
         act.setActionCommand("act");
+        grafico = new JButton("Grafico");
+        grafico.setActionCommand("gra");
         
         add(inicio);
         add(act);
+        add(grafico);
         add(salir);
         this.setVisible(true);
     }

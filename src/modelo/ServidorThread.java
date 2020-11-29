@@ -53,6 +53,8 @@ public class ServidorThread extends Thread
                          servidor.sumarTiempo(num, taxi.getIdGrupo());
                 }
             }
+            
+            taxi.setLiberarRecurso();
         }
         catch (Exception e) 
         {
