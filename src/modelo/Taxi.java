@@ -13,6 +13,8 @@ public class Taxi
     private String coordenada;
     
     private Socket socket;
+    byte[] mensaje_bytes = new byte[1024];
+
     
     private static int id_taxi_prox;
     private final int id_taxi;
@@ -37,9 +39,10 @@ public class Taxi
     }
 
     public void setLiberarRecurso() throws IOException{
-        socket.close();
         lee.close();
         esc.close();
+        socket.close();
+
     }
 
     public int getIdGrupo()
@@ -95,13 +98,7 @@ public class Taxi
     {
         String s = "Taxib [id " + id_taxi + ", coordenada "
                 + coordenada + ", socket: " + socket + "]";
-        try {
-            socket.setSoTimeout(10000);
-        } catch (SocketException ex) {
-            Logger.getLogger(Taxi.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return s;
+       return s;
         
     }
 }

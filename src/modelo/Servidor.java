@@ -49,6 +49,8 @@ public class Servidor
         }
         try
         {
+            System.out.println("Escucho el puerto " + PORT );
+
             list = new ArrayList<Taxi>();
             list.clear();
             ExecutorService pool = newCachedThreadPool();
@@ -68,6 +70,9 @@ public class Servidor
         for (int i = 0; i < list.size(); ++i) 
         {
             pool.execute(new ServidorThread(list.get(i), this, i));
+            System.out.println("Ejecuto Hilos" + list.get(i) );
+
+            
         }
     }
 

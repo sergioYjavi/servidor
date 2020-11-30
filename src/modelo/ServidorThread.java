@@ -20,13 +20,13 @@ public class ServidorThread extends Thread
     {
         try 
         {
-            boolean noAcabar = true;
+            boolean terminar = true;
             String msg = "";
             String[] s;
             
             DataInputStream in = taxi.getLectura();
             
-            while (noAcabar) 
+            while (terminar) 
             {
                 msg = in.readUTF();
                 while(!msg.substring(0,3).equals("ACK"))
